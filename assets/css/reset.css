@@ -1,0 +1,60 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  line-height: 1;
+  font-family: sans-serif;
+}
+
+​h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+}
+
+​input,
+select,
+option,
+optgroup,
+textarea,
+button,
+pre,
+code {
+  font-size: 100%;
+  font-family: inherit;
+}
+
+​ol,
+ul {
+  list-style: none;
+}
+
+/* Removes animations and transitions */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
