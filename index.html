@@ -10,7 +10,7 @@
     <header>
         <div class="top-container">
             <div class="row">
-                  <!-- Highscores link -->
+                  <!-- Highscores link will display "scoreboard" div and hide all others -->
                 <div class="highscore-link">
 
                 </div>
@@ -32,16 +32,26 @@
             <button class="start-button">Start</button>
         </div>
         <!-- "questions" div will be hidden until the start button is clicked, which will then hide the "game-title"-->
-        <div class="questions">
-
-
+        <div class="questions-box">
+            <div class="each-question"> 
+                <h2 class="insert-question">Question displayed here</h2>
+                    <ul>
+                        <li>A</li>
+                        <li>B</li>
+                        <li>C</li>
+                        <li>D</li>
+                    </ul>
+            </div>
         </div>
       </section>
 
       <!-- "scoreboard" will be hidden until timer runs out or no questions left to answer-->
       <section>
         <div class="scoreboard">
-    
+
+            <button class="submit">Submit</button>
+            <button class="play-again">Play Again</button>
+            <button class="reset-highscores">Reset Highscores</button>
       </section>
 
 
