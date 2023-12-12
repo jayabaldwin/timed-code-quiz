@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Coding Quiz</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <header>
+        <div class="top-container">
+            <div class="row">
+                  <!-- Highscores link -->
+                <div class="highscore-link">
+
+                </div>
+                   <!-- Timer div -->
+                <div class="timer">
+                    <div class="time-label"></div>
+                    <div class="countdown-seconds"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- questions -->
+      <section class="quiz-container">
+        <div class="game-title">
+            <h1>Coding Quiz Game</h1>
+            <p>Try to answer the following code related questions before the timer runs out! Any incorrect answers will incur a penalty of 10 seconds... so be careful, but not too careful.</p>
+            <button class="start-button">Start</button>
+        </div>
+        <!-- "questions" div will be hidden until the start button is clicked, which will then hide the "game-title"-->
+        <div class="questions">
+
+
+        </div>
+      </section>
+
+      <!-- "scoreboard" will be hidden until timer runs out or no questions left to answer-->
+      <section>
+        <div class="scoreboard">
+    
+      </section>
+
+
+    </main>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
