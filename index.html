@@ -12,15 +12,15 @@
 
         <!-- Timer div -->
         <div class="timer">
-                    <div class="time-label"></div>
-                    <div class="countdown-seconds"></div>
+            <div class="time-label"></div>
+            <div id="countdown" class="countdown"></div>
         </div>
     </header>
 
     <main>
         <!-- questions -->
       <section class="quiz-box">
-        <div id="game-screen" class="start">
+        <div id="start-screen" class="start">
             <h1>Coding Quiz Game</h1>
             <p>Try to answer the following code related questions before the timer runs out! Any incorrect answers will incur a penalty of 10 seconds... so be careful, but not too careful.</p>
             <button id="start-button">Start Quiz</button>
@@ -34,11 +34,13 @@
 
         <!-- "results" div will be hidden until timer runs out or all questions are answered -->
         <div id="results" class="hide">
-            <h2>Congratulations!</h2>
+            <h2>Test Concluded...</h2>
             <p>Your final score is: <span id="final-score"></span></p>
             <p>Enter initials: 
                 <input type="text" id="initials"/> 
+                <button id="submit">Submit</button>
             </p>
+
         </div>
       </section>
 
