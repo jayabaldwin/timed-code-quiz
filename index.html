@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Coding Quiz</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <header>
+        <div class="highscores"><a href="highscores.html">View Highscores</a></div>
+
+        <!-- Timer div -->
+        <!-- <div class="timer">
+            <div class="time-label"></div> -->
+        <div class="countdown">Time: <span id="countdown">60</span></div>
+        <!-- </div> -->
+
+    </header>
+
+    <main>
+        <!-- questions -->
+      <section class="quiz-box">
+        <div id="start-screen" class="start">
+            <h1>Coding Quiz Game</h1>
+            <p>Try to answer the following code related questions before the timer runs out! Any incorrect answers will incur a penalty of 10 seconds... so be careful, but not too careful.</p>
+            <button id="start-button">Start Quiz</button>
+        </div>
+
+        <!-- "questions" div will be hidden until the start button is clicked, which will then hide the "game-screen"-->
+        <div id="questions" class="hide">
+            <h2 id="question-name"></h2>
+            <div id="options"></div>
+        </div>
+
+        <!-- "results" div will be hidden until timer runs out or all questions are answered -->
+        <div id="results" class="hide">
+            <h2>Test Concluded...</h2>
+            <p>Your final score is: <span id="final-score"></span></p>
+            <p>Enter initials: 
+                <input type="text" id="initials"/> 
+                <button id="submit">Submit</button>
+            </p>
+
+        </div>
+      </section>
+
+    </main>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/highscores.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+<!-- // First try at code -->
+
+<!-- <div class="each-question"> 
+                <h2 class="insert-question">Question displayed here</h2>
+                        <button class="A"></button>
+                        <button class="B"></button>
+                        <button class="C"></button>
+                        <button class="D"></button>
+            </div>
+</div> -->
+
+
+
+
+<!-- 
+"scoreboard" will be hidden until timer runs out or no questions left to answer
+<section>
+  <div class="scoreboard">
+      <div class="congratulations">
+          <h2>CONGRATULATIONS</h2>
+          <p class="final-score">Your final score is: </p>
+      </div>
+
+      <button class="submit">Submit</button>
+      <button class="play-again">Play Again</button>
+      <button class="reset-highscores">Reset Highscores</button>
+</section> -->
