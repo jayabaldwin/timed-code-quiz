@@ -22,41 +22,53 @@ var questions = [
     },
 ]
 
+// variables to connect to DOM elements
 var questionContainer = document.getElementById("questions");
 var questionTitle = document.getElementById("question-name");
 var questionOptions = document.getElementById("options");
 var startScreen = document.getElementById("start-screen");
 var startButton = document.getElementById("start-button");
-var countdownContainer = document.getElementById("countdown");
+var countdownEl = document.getElementById("countdown");
+var resultsPage = document.getElementById("results");
 
-var timerClock = 60;
-var questionCounter = 0;
+// timer
+var timeLeft = 60;
 
-// logic
+// question index
+var questionIndex = 0;
 
+// button that initiates the start game function
 startButton.addEventListener("click", startGame);
 
+// hides start screen, displays question screen, initiates timer and renders first question
 function startGame() {
     startScreen.classList.add('hide');
     questionContainer.classList.remove('hide');
 
     setInterval(countdownTimer, 1000);
-    // use clear interval to stop the countdown
+
     renderQuestions();
 }
 
+// timer... need to clearInterval when 0 but can't figure out how to when setInterval hasnt been declared as a function
 function countdownTimer() {
-    timerClock --;
-    countdownContainer.textContent = timerClock;
+    timeLeft --;
+    countdownEl.textContent = timeLeft;
+
+
+    if (timeLeft === 0) {
+        questionContainer.classList.add('hide');
+        resultsPage.classList.remove('hide');
+    }
 }
 
 
 function renderQuestions() {
-    var currentQuestion = questions[questionCounter];
+    var currentQuestion = questions[questionIndex];
     questionOptions.innerHTML = "";
     questionTitle.textContent = currentQuestion.title
 
-    var optionsArray = questions[questionCounter].options;
+    var optionsArray = questions[questionIndex].options;
     for (var i=0; i < optionsArray.length; i++) {
         var choice = optionsArray[i];
         console.log(choice);
@@ -65,19 +77,36 @@ function renderQuestions() {
         choiceEl.setAttribute("value", choice);
         choiceEl.textContent = choice;
         questionOptions.appendChild(choiceEl);
-
     }
 }
 
+// moving forward to the next question upon making a choice
 function questionClick(event) {
     var buttonEl = event.target;
     console.log("answerValue", buttonEl.value);
 
-    questionCounter++;
+    questionIndex++;
     renderQuestions();
 
+// if button vakue !== questions answer
+// peanalize time ... timeLeft -= 10
+
+// if time < 0 {
+    if (timeLeft < 0) {
+        timeLeft = 0;
+    }
 }
 
+
+
+
+
+
+
+
+
+
 questionOptions.addEventListener("click", questionClick);
+
 
 // compare value, if correct all g, incorrect subtract 10, if value of counter 0 stop game
