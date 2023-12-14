@@ -1,8 +1,29 @@
+:root {
+
+}
+
 .hide {
     display: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.quiz-box,
+.scoreboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .countdown {
     color: black;
     font-size: 25px;
+}
+
+#options {
+    display: flex;
+    flex-direction: column;
 }
