@@ -1,24 +1,24 @@
 // 4 questions to do... always start with data, then logic
 var questions = [
     {
-        title: "How much is 2 + 2?",
-        options: ["0", "1", "2", "4"],
-        answer: "4"
+        title: "Which is NOT a primitive data type in JavaScript?",
+        options: ["Boolean", "Object", "Undefined", "String"],
+        answer: "Object"
     },
     {
-        title: "How much is 2 + 3?",
-        options: ["2", "5", "2", "4"],
-        answer: "5"
+        title: "Which symbol represents the modulus?",
+        options: ["!", ">=", "*", "%"],
+        answer: "%"
     },
     {
-        title: "How much is 2 + 4?",
-        options: ["7", "9", "2", "4"],
-        answer: "6"
+        title: "Which method is used to remove the last element from an array in JavaScript?",
+        options: ["slice()", "remove()", "pop()", "delete()"],
+        answer: "pop()"
     },
     {
-        title: "How much is 2 + 5?",
-        options: ["0", "6", "2", "3"],
-        answer: "7"
+        title: "Which symbol is used for commenting out single-lines in JavaScript?",
+        options: ["//", "/*...*/", "&&", "||"],
+        answer: "//"
     },
 ]
 
@@ -29,7 +29,7 @@ var startScreen = document.getElementById("start-screen");
 var startButton = document.getElementById("start-button");
 var countdownContainer = document.getElementById("countdown");
 
-var timerClock = 75;
+var timerClock = 60;
 var questionCounter = 0;
 
 // logic
