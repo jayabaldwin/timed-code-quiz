@@ -30,6 +30,8 @@ var startScreen = document.getElementById("start-screen");
 var startButton = document.getElementById("start-button");
 var countdownEl = document.getElementById("countdown");
 var resultsPage = document.getElementById("results");
+var initialsEl = document.getElementById("initials");
+var submitButton = document.getElementById("submit");
 
 // starting timer state
 var timeLeft = 60;
@@ -121,13 +123,32 @@ function questionClick(event) {
     questionIndex++;
     renderQuestions();
 
-// if button vakue !== questions answer
-// peanalize time ... timeLeft -= 10
+    var correctAnswer = questions[questionIndex].answer;
+    
+    // subtract time if answer is incorrect
+    if (buttonEl.value !== correctAnswer) {
+        timeLeft -= 10;
+    }
 
-// if time < 0 {
+    // once the time runs out, maintain display of 0 
     if (timeLeft < 0) {
         timeLeft = 0;
     }
+
+    // if questions are completed prior to time running out, move to results screen
+    if (questionIndex === questions.length) {
+        questionContainer.classList.add('hide');
+        resultsPage.classList.remove('hide');
+    }
+}
+
+
+// saving score
+function saveScore() {
+    var initials = initialsEl.value.trim();
+    
+
+
 }
 
 questionOptions.addEventListener("click", questionClick);
