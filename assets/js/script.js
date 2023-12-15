@@ -34,13 +34,32 @@ var initialsEl = document.getElementById("initials");
 var submitButton = document.getElementById("submit");
 
 // starting timer state
-var timeLeft = 60;
+var timeLeft = 40;
 
 // question index
 var questionIndex = 0;
 
 // timer for clearing later
-var timerInterval;
+var timerInterval = setInterval(function() {
+            // decrease var timeLeft that was declared earlier by 1
+            timeLeft --;
+    
+            // countdown html element display the text of timeleft 
+            countdownEl.textContent = timeLeft;
+    
+            if(timeLeft === 0) {
+                // Stops execution of action at set interval
+                clearInterval(timerInterval);
+
+                //Set timeLeft to 0 and update the countdown element's text content to show 0 
+                countdownEl.textContent = 0;
+    
+                // when time runs out, go to results page regardless of if quiz is completed
+                questionContainer.classList.add('hide');
+                resultsPage.classList.remove('hide');
+             }
+      
+         }, 1000);
 
 
 // button that initiates the start game function
@@ -63,26 +82,30 @@ function startGame() {
 
 
 // timer
-function countdownTimer() {
-    // Sets interval in variable
-    var timerInterval = setInterval(function() {
-        // decrease var timeLeft that was declared earlier by 1
-        timeLeft --;
+// function countdownTimer() {
+//     // Sets interval in variable
+//     var timerInterval = setInterval(function() {
+//         // decrease var timeLeft that was declared earlier by 1
+//         timeLeft --;
 
-        // countdown html element display the text of timeleft 
-        countdownEl.textContent = timeLeft;
+//         // countdown html element display the text of timeleft 
+//         countdownEl.textContent = timeLeft;
 
-        if(timeLeft === 0) {
-            // Stops execution of action at set interval
-            clearInterval(timerInterval);
+//         if(timeLeft === 0) {
+//             // Stops execution of action at set interval
+//             clearInterval(timerInterval);
 
-            // when time runs out, go to results page regardless of if quiz is completed
-            questionContainer.classList.add('hide');
-            resultsPage.classList.remove('hide');
-         }
+//             // when time runs out, go to results page regardless of if quiz is completed
+//             questionContainer.classList.add('hide');
+//             resultsPage.classList.remove('hide');
+//          }
   
-     }, 1000);
-  }
+//      }, 1000);
+//   }
+
+function countdownTimer() {
+    timerInterval;
+}
 
 
 // questions function
@@ -127,49 +150,50 @@ function renderQuestions() {
 
 // moving forward to the next question upon making a choice
 function questionClick(event) {
+    // Get the element that triggered the event and store it in buttonEl
     var buttonEl = event.target;
     console.log("answerValue", buttonEl.value);
 
+    // Get the correct answer for the current question and store it in correctAnswer
     var correctAnswer = questions[questionIndex].answer;
 
-    // subtract time if answer is incorrect
-    if (buttonEl.value !== correctAnswer) {
+    // Subtract time if answer is incorrect, but dont allow to go into minus seconds
+    if (buttonEl.value !== correctAnswer && timeLeft > 10) {
         timeLeft -= 10;
+    } else if 
+        (buttonEl.value !== correctAnswer && timeLeft < 10) {
+        clearInterval(timerInterval);  
     }
 
-    // once the time runs out, maintain display of 0 
-    if (timeLeft < 0) {
-        timeLeft = 0;
-    }
-
-    // Check if questions are completed prior to time running out
+    // Check if current question is last one, and if they are completed prior to time running out
     if (questionIndex === questions.length - 1) {
-        // If it's the last question, go to the results screen
+        // clear timerInterval as all questions have been answered
+        clearInterval(timerInterval);
+        // go to results page
         questionContainer.classList.add('hide');
         resultsPage.classList.remove('hide');
-
-
     } else {
         // Move to the next question
         questionIndex++;
         renderQuestions();
     }
-
-    // If questions are completed end the timer
-    if (timeLeft > 0 && questionIndex === questions.length) {
-        clearInterval(timerInterval);
-        countdownEl.textContent = 0;
-    }
 }
-
 // To address the issue of the timer continuing to count down even after completing all the questions, you should clear the interval when all questions are answered. In your questionClick function, add a check to see if the timer is already at 0 and only decrement the time if it's greater than 0. Additionally, clear the interval when all questions are completed.
 
 // saving score
 function saveScore() {
+
+    // save value of input box
     var initials = initialsEl.value.trim();
+
+    // confirm initials were entered
+    if (initials !== '') {
+        // retrieve saved scores from local storage
+        var highScore = JSON.parse(window.localStorage.getItem)
+
     
-
-
+    // 
+    } 
 }
 
 questionOptions.addEventListener("click", questionClick);
