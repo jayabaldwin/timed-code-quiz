@@ -5,6 +5,7 @@ var highScores = JSON.parse(window.localStorage.getItem('highScores')) || [];
 
 function displayHighScores() {
     // presents scores in descending order, from highest to lowest score
+    // REVISE THIS FUNCTION
     highScores.sort((a, b) => b.score - a.score);
     highscoreList.innerHTML = '';
 

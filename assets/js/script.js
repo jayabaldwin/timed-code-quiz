@@ -43,6 +43,9 @@ var questionIndex = 0;
 // timer for clearing later
 var timerInterval;
 
+// how many questions correct
+var correctQuestions;
+
 
 // button that starts the game
 startButton.addEventListener("click", function() {
@@ -58,20 +61,6 @@ startButton.addEventListener("click", function() {
     // renders first question
     renderQuestions();
 });
-
-// function startGame() {
-//     // hides start screen
-//     startScreen.classList.add('hide');
-
-//     // displays question screen
-//     questionContainer.classList.remove('hide');
-
-//     // initiates timer
-//     countdownTimer();
-
-//     // renders first question
-//     renderQuestions();
-// }
 
 
 function countdownTimer() {
