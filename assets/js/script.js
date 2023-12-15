@@ -39,6 +39,9 @@ var timeLeft = 60;
 // question index
 var questionIndex = 0;
 
+// timer for clearing later
+var timerInterval;
+
 
 // button that initiates the start game function
 startButton.addEventListener("click", startGame);
@@ -113,18 +116,22 @@ function renderQuestions() {
         // adds button into the div
         questionOptions.appendChild(choiceEl);
     }
+
+    // if questions are completed prior to time running out, move to results screen
+    if (questionIndex === questions.length) {
+        questionContainer.classList.add('hide');
+        resultsPage.classList.remove('hide');
+    }
 }
+
 
 // moving forward to the next question upon making a choice
 function questionClick(event) {
     var buttonEl = event.target;
     console.log("answerValue", buttonEl.value);
 
-    questionIndex++;
-    renderQuestions();
-
     var correctAnswer = questions[questionIndex].answer;
-    
+
     // subtract time if answer is incorrect
     if (buttonEl.value !== correctAnswer) {
         timeLeft -= 10;
@@ -135,13 +142,27 @@ function questionClick(event) {
         timeLeft = 0;
     }
 
-    // if questions are completed prior to time running out, move to results screen
-    if (questionIndex === questions.length) {
+    // Check if questions are completed prior to time running out
+    if (questionIndex === questions.length - 1) {
+        // If it's the last question, go to the results screen
         questionContainer.classList.add('hide');
         resultsPage.classList.remove('hide');
+
+
+    } else {
+        // Move to the next question
+        questionIndex++;
+        renderQuestions();
+    }
+
+    // If questions are completed end the timer
+    if (timeLeft > 0 && questionIndex === questions.length) {
+        clearInterval(timerInterval);
+        countdownEl.textContent = 0;
     }
 }
 
+// To address the issue of the timer continuing to count down even after completing all the questions, you should clear the interval when all questions are answered. In your questionClick function, add a check to see if the timer is already at 0 and only decrement the time if it's greater than 0. Additionally, clear the interval when all questions are completed.
 
 // saving score
 function saveScore() {
@@ -176,5 +197,4 @@ questionOptions.addEventListener("click", questionClick);
 //     if (timeLeft === 0) {
 //         questionContainer.classList.add('hide');
 //         resultsPage.classList.remove('hide');
-//     }
-// }
+//     
