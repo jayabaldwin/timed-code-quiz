@@ -56,4 +56,5 @@ View my quiz [here](https://jayabaldwin.github.io/timed-code-quiz/)
 ## Acknowledgements
 <!-- Add any tutorials -->
 
-<!-- - Assistance from my tutor Anastasia Warren -->
+- Assistance from my tutor Anastasia Warren
+- Help from various tutors through AskBCS Learning Assistant on Slack

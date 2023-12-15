@@ -1,12 +1,25 @@
 var highscoreList = document.getElementById("highscores-list");
 var resetButton = document.getElementById("reset-highscores");
 
-// scores need to be saved into an array
+var highScores = JSON.parse(window.localStorage.getItem('highScores')) || [];
 
-// scores need to be locally accessed "getItem" "letItem"
+function displayHighScores() {
+    // presents scores in descending order, from highest to lowest score
+    highScores.sort((a, b) => b.score - a.score);
+    highscoreList.innerHTML = '';
 
-// scores need to be printed into var high score list 
+    for (var i = 0; i < highScores.length; i++) {
+        var scoreItem = document.createElement('li');
+        scoreItem.textContent = `${highScores[i].initials}: ${highScores[i].score}`;
+        highscoreList.appendChild(scoreItem);
+    }
+}
 
-// scores need to present in descending order as its a leader board (a, b)
+// call function to display the high scores
+displayHighScores();
 
-// scores can be cleared using reset button
+// clear high scores using reset button
+resetButton.addEventListener('click', function () {
+    window.localStorage.removeItem('highScores');
+    window.location.reload();
+});

@@ -32,41 +32,20 @@ var countdownEl = document.getElementById("countdown");
 var resultsPage = document.getElementById("results");
 var initialsEl = document.getElementById("initials");
 var submitButton = document.getElementById("submit");
+var finalScore = document.getElementById("final-score");
 
 // starting timer state
-var timeLeft = 40;
+var timeLeft = 60;
 
 // question index
 var questionIndex = 0;
 
 // timer for clearing later
-var timerInterval = setInterval(function() {
-            // decrease var timeLeft that was declared earlier by 1
-            timeLeft --;
-    
-            // countdown html element display the text of timeleft 
-            countdownEl.textContent = timeLeft;
-    
-            if(timeLeft === 0) {
-                // Stops execution of action at set interval
-                clearInterval(timerInterval);
-
-                //Set timeLeft to 0 and update the countdown element's text content to show 0 
-                countdownEl.textContent = 0;
-    
-                // when time runs out, go to results page regardless of if quiz is completed
-                questionContainer.classList.add('hide');
-                resultsPage.classList.remove('hide');
-             }
-      
-         }, 1000);
+var timerInterval;
 
 
-// button that initiates the start game function
-startButton.addEventListener("click", startGame);
-
-
-function startGame() {
+// button that starts the game
+startButton.addEventListener("click", function() {
     // hides start screen
     startScreen.classList.add('hide');
 
@@ -78,37 +57,44 @@ function startGame() {
 
     // renders first question
     renderQuestions();
-}
+});
 
+// function startGame() {
+//     // hides start screen
+//     startScreen.classList.add('hide');
 
-// timer
-// function countdownTimer() {
-//     // Sets interval in variable
-//     var timerInterval = setInterval(function() {
-//         // decrease var timeLeft that was declared earlier by 1
-//         timeLeft --;
+//     // displays question screen
+//     questionContainer.classList.remove('hide');
 
-//         // countdown html element display the text of timeleft 
-//         countdownEl.textContent = timeLeft;
+//     // initiates timer
+//     countdownTimer();
 
-//         if(timeLeft === 0) {
-//             // Stops execution of action at set interval
-//             clearInterval(timerInterval);
+//     // renders first question
+//     renderQuestions();
+// }
 
-//             // when time runs out, go to results page regardless of if quiz is completed
-//             questionContainer.classList.add('hide');
-//             resultsPage.classList.remove('hide');
-//          }
-  
-//      }, 1000);
-//   }
 
 function countdownTimer() {
-    timerInterval;
-}
+    // Sets interval in variable
+    var timerInterval = setInterval(function() {
+        // decrease var timeLeft that was declared earlier by 1
+        timeLeft --;
+
+        // countdown html element display the text of timeleft 
+        countdownEl.textContent = timeLeft;
+
+        if(timeLeft === 0) {
+            // Stops execution of action at set interval
+            clearInterval(timerInterval);
+
+            // when time runs out, go to results page regardless of if quiz is completed
+            questionContainer.classList.add('hide');
+            resultsPage.classList.remove('hide');
+         }
+     }, 1000);
+  }
 
 
-// questions function
 function renderQuestions() {
     // select question object from the array of questions
     var currentQuestion = questions[questionIndex];
@@ -120,12 +106,11 @@ function renderQuestions() {
     questionTitle.textContent = currentQuestion.title
 
     // question array [indexed] and selecting the options property from inside it
-    var optionsArray = questions[questionIndex].options;
+    var optionsArray = currentQuestion.options;
 
     // loop through each potential answer
     for (var i=0; i < optionsArray.length; i++) {
         var choice = optionsArray[i];
-        console.log(choice);
 
         // create buttons for each option
         var choiceEl = document.createElement("button");
@@ -139,16 +124,9 @@ function renderQuestions() {
         // adds button into the div
         questionOptions.appendChild(choiceEl);
     }
-
-    // if questions are completed prior to time running out, move to results screen
-    if (questionIndex === questions.length) {
-        questionContainer.classList.add('hide');
-        resultsPage.classList.remove('hide');
-    }
 }
 
 
-// moving forward to the next question upon making a choice
 function questionClick(event) {
     // Get the element that triggered the event and store it in buttonEl
     var buttonEl = event.target;
@@ -178,47 +156,24 @@ function questionClick(event) {
         renderQuestions();
     }
 }
-// To address the issue of the timer continuing to count down even after completing all the questions, you should clear the interval when all questions are answered. In your questionClick function, add a check to see if the timer is already at 0 and only decrement the time if it's greater than 0. Additionally, clear the interval when all questions are completed.
-
-// saving score
-function saveScore() {
-
-    // save value of input box
-    var initials = initialsEl.value.trim();
-
-    // confirm initials were entered
-    if (initials !== '') {
-        // retrieve saved scores from local storage
-        var highScore = JSON.parse(window.localStorage.getItem)
-
-    
-    // 
-    } 
-}
 
 questionOptions.addEventListener("click", questionClick);
 
 
+submitButton.addEventListener("click", function() {
+    var initials = initialsEl.value.trim();
+    if (initials !== '') {
+        var highScores = JSON.parse(window.localStorage.getItem('highScores')) || [];
+        var newScore = {
+            initials: initials,
+            // SCORE SHOULD BE HOW MANY QUESTIONS ARE CORRECT + TIME REMAINING
+            score: timeLeft
+        };
 
+        finalScore.textContent = newScore.score;
 
-
-
-
-// compare value, if correct all g, incorrect subtract 10, if value of counter 0 stop game
-
-// initially used within start game function but couldnt figure out how to clearinterval when it wasnt declared as a variable
-// setInterval(countdownTimer, 1000);
-
-// timer... need to clearInterval when 0 but can't figure out how to when setInterval hasnt been declared as a function
-// function countdownTimer() {
-//     // decrease var timeLeft that was declared earlier by 1
-//     timeLeft --;
-
-//     // countdown html element display the text of timeleft 
-//     countdownEl.textContent = timeLeft;
-
-//     // when time runs out, go to results page regardless of if quiz is answered
-//     if (timeLeft === 0) {
-//         questionContainer.classList.add('hide');
-//         resultsPage.classList.remove('hide');
-//     
+        highScores.push(newScore);
+        window.localStorage.setItem('highScores', JSON.stringify(highScores));
+        window.location.href = 'highscores.html';
+    }
+});
