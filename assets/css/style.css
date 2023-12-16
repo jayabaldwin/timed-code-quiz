@@ -3,7 +3,7 @@
     --black: black;
     --flower: #E3A68C;
     --amber: #CC6A46;
-    --light: #e2c7bb;
+    --light: #e2c7bbb6;
  
 }
 
@@ -18,6 +18,7 @@ p {
     font-family: 'Roboto', sans-serif;
     font-size: 2em;
 }
+
 
 .hide {
     display: none;
@@ -36,8 +37,7 @@ body {
 }
 
 main,
-.quiz-box,
-.scoreboard {
+.quiz-box {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -49,15 +49,19 @@ main,
     text-align: center;
 }
 
-#buttons {
-    display: inline;
+.scoreboard {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-left: 4em;
+    margin-top: 3em;
 }
 
 .countdown {
     color: black;
     font-size: 25px;
     font-family: 'Montserrat', sans-serif;
-
 }
 
 #highscores {
@@ -70,12 +74,6 @@ main,
 #highscores:hover {
     text-decoration: overline;
     color: var(--amber);
-}
-
-li {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: 2em;
 }
 
 #options {
@@ -103,6 +101,10 @@ button:hover {
     background-color: var(--amber);
 }
 
+#buttons {
+    display: inline;
+}
+
 #submit {
     font-size: 1.5em;
 }
@@ -111,6 +113,17 @@ button:hover {
     font-size: 0.75em;
     border: 2px solid var(--amber);
 
+}
+
+.answerCheck {
+    font-style: italic;
+    font-size: 1.5em;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 200;
+    margin-top: 2em;
+    padding-top: 1em;
+    color: rgba(0, 0, 0, 0.8);
+    border-top: 4px dotted white;
 }
 
 @media screen and (max-width: 1200px) {

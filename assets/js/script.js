@@ -40,6 +40,11 @@ var questions = [
         options: ["a) Not a Number", "b) Null and Nothing", "c) Negative Number", "d) No Assignment"],
         answer: "a) Not a Number"
     },
+    // {
+    //     title: "",
+    //     options: "",
+    //     answer: ""
+    // },
 ]
 
 
@@ -92,7 +97,7 @@ function countdownTimer() {
         // countdown html element display the text of timeleft 
         countdownEl.textContent = timeLeft + " seconds";
     
-        if(timeLeft === 0 || questionIndex === questions.length - 1 || timeLeft < 0) {
+        if(timeLeft === 0 || questionIndex === questions.length || timeLeft < 0) {
             // Stops execution of action at set interval
             clearInterval(timerInterval);
             endGame();
@@ -142,24 +147,42 @@ function questionClick(event) {
     var buttonEl = event.target;
     console.log("answerValue", buttonEl.value);
 
+
     // Get the correct answer for the current question and store it in correctAnswer
     var correctAnswer = questions[questionIndex].answer;
+    // var lineBreak = document.getElementById("lineBreak");
+    // lineBreak.style.display = "block";
+    answerCheck.style.display = "block";
 
-    // Subtract time if answer is incorrect
+    // Subtract time and display feedback if incorrect
     if (buttonEl.value !== correctAnswer) {
         timeLeft -= 10;
+
+        answerCheck.classList.remove('hide');
+        answerCheck.textContent = "Wrong! The correct answer is: " + correctAnswer;
+        setTimeout(function() {
+        answerCheck.classList.add('hide');
+        }, 500);
     } else if
         (buttonEl.value === correctAnswer) {
-        answerCount++;    
+        answerCount++;  
+  
+        answerCheck.classList.remove('hide');
+        answerCheck.textContent = "Correct!";
+        setTimeout(function() {
+            answerCheck.classList.add('hide');
+        }, 500);
     };
 
-    // stops action from taking place if the click is not on the buttonEl
-    if (buttonEl.matches(questions.options)) {
-        return;
-    } else {
-        questionIndex++;
-        renderQuestions();
-    };
+
+         // stops action from taking place if the click is not on the buttonEl
+         if (buttonEl.matches(questions.options)) {
+            return;
+        } else {
+            questionIndex++;
+            renderQuestions();
+        };
+  
 }
 
 questionOptions.addEventListener("click", questionClick);
