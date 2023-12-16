@@ -40,9 +40,11 @@ Top Tip: just try again ... and again and again... eventually it will click.
 
 
 ### Final Outcome
-View my quiz [here](https://jayabaldwin.github.io/timed-code-quiz/)
+View my deployed application [here](https://jayabaldwin.github.io/timed-code-quiz/)
 
-<!-- Insert screenshot here -->
+The following animation displays the applications functionality:
+
+![A user clicks through an interactive coding quiz, then enters initials to save the high score before resetting and starting over.](./assets/images/screenshots/Dec-17-2023%2000-22-05.gif)
 
 
 ### Built With
