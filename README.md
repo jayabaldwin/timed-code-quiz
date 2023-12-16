@@ -32,7 +32,7 @@ THEN I can save my initials and my score
 
 
 ## Overview
- Overall, this experienced proved very difficult but I really got into a roll towards the end of it. A large portion of this project was trial and error... I'd try implementing new techniques (some attempts were based off what we learn in class and others fell short of even educated guesses) for hours, until I came to a solution.
+ Overall, only having minimal knowledge of the language and not being familiar with its capabilities proved to be quite the challenge... but I really got into a roll towards the end of it. A large portion of this project was trial and error... I'd try implementing new techniques (some attempts were based off what we learnt in class and others fell short of even an educated guess) for hours, back and forth, until I came to a solution.
 
  It drove me a little bonkers BUT we got there in the end and it helped get me a lot more comfortable with JS.
 
@@ -44,7 +44,7 @@ View my deployed application [here](https://jayabaldwin.github.io/timed-code-qui
 
 The following animation displays the applications functionality:
 
-![A user clicks through an interactive coding quiz, then enters initials to save the high score before resetting and starting over.](./assets/images/screenshots/Dec-17-2023%2000-22-05.gif)
+![The following animation displays the applications functionality:](./assets/images/screenshots/timed-code-quiz.gif)
 
 
 ### Built With
