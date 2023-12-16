@@ -32,29 +32,29 @@ THEN I can save my initials and my score
 
 
 ## Overview
- <!-- Describe overall experience -->
+ Overall, this experienced proved very difficult but I really got into a roll towards the end of it. A large portion of this project was trial and error... I'd try implementing new techniques (some attempts were based off what we learn in class and others fell short of even educated guesses) for hours, until I came to a solution.
 
- <!-- Any specific technical things that were learned/improved? -->
+ It drove me a little bonkers BUT we got there in the end and it helped get me a lot more comfortable with JS.
 
- <!-- Any tips? -->
+Top Tip: just try again ... and again and again... eventually it will click.
 
 
 ### Final Outcome
-
 View my quiz [here](https://jayabaldwin.github.io/timed-code-quiz/)
 
 <!-- Insert screenshot here -->
 
 
 ### Built With
-- VS Code
+- JavaScript
 - HTML
 - CSS
-- JavaScript
+- VS Code
+
 
 
 ## Acknowledgements
-<!-- Add any tutorials -->
-
 - Assistance from my tutor Anastasia Warren
 - Help from various tutors through AskBCS Learning Assistant on Slack
+- Inspiration from prior student's [work](https://github.com/mmeii/code-quiz)
+- All other information gained from revising class work, no tutorials this time

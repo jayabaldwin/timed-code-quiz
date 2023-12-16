@@ -152,7 +152,7 @@ function questionClick(event) {
     var correctAnswer = questions[questionIndex].answer;
     // var lineBreak = document.getElementById("lineBreak");
     // lineBreak.style.display = "block";
-    answerCheck.style.display = "block";
+    // answerCheck.style.display = "block";
 
     // Subtract time and display feedback if incorrect
     if (buttonEl.value !== correctAnswer) {
@@ -162,7 +162,7 @@ function questionClick(event) {
         answerCheck.textContent = "Wrong! The correct answer is: " + correctAnswer;
         setTimeout(function() {
         answerCheck.classList.add('hide');
-        }, 500);
+        }, 1500);
     } else if
         (buttonEl.value === correctAnswer) {
         answerCount++;  
@@ -171,7 +171,7 @@ function questionClick(event) {
         answerCheck.textContent = "Correct!";
         setTimeout(function() {
             answerCheck.classList.add('hide');
-        }, 500);
+        }, 1500);
     };
 
 
