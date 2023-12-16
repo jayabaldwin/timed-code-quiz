@@ -1,9 +1,9 @@
 /* colour pallete */
 :root {
-    --turquoise: black;
+    --black: black;
     --flower: #E3A68C;
     --amber: #CC6A46;
-    --white: #ffffff;
+    --light: #e2c7bb;
  
 }
 
@@ -32,7 +32,7 @@ body {
     margin-left: 5em;
     margin-right: 5em;
     margin-top: 2em;
-    background-color: #e2c7bb;
+    background-color: var(--light);
 }
 
 main,
@@ -93,8 +93,8 @@ button {
     font-family: 'Roboto', sans-serif;
     font-size: 1.5em;
     font-weight: 200;
-    color: var(--white);
-    background-color: var(--turquoise);
+    color: white;
+    background-color: var(--black);
     box-shadow: 0 1.25rem 1rem -1rem var(--amber);
 }
 
@@ -105,6 +105,12 @@ button:hover {
 
 #submit {
     font-size: 1.5em;
+}
+
+#initials {
+    font-size: 0.75em;
+    border: 2px solid var(--amber);
+
 }
 
 @media screen and (max-width: 1200px) {

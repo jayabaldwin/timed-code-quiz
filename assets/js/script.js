@@ -1,46 +1,48 @@
-// 4 questions to do... always start with data, then logic
+// start with data, then logic
 var questions = [
     {
         title: "What is JavaScript primarily used for?",
-        options: ["Styling web pages", "Enhancing interactivity on web pages", "Database management", "Server-side scripting"],
-        answer: "Enhancing interactivity on web pages"
+        options: ["a) Styling web pages", "b) Enhancing interactivity on web pages", "c) Database management", "d) Server-side scripting"],
+        answer: "b) Enhancing interactivity on web pages"
     },
     {
         title: "Which symbol represents the modulus?",
-        options: ["!", ">=", "*", "%"],
-        answer: "%"
+        options: ["a) !", "b) >=", "c) *", "d) %"],
+        answer: "d) %"
     },
     {
         title: "Which method is used to remove the last element from an array in JavaScript?",
-        options: ["slice()", "remove()", "pop()", "delete()"],
-        answer: "pop()"
+        options: ["a) slice()", "b) remove()", "c) pop()", "d) delete()"],
+        answer: "c) pop()"
     },
     {
         title: "Which symbol is used for commenting out single-lines in JavaScript?",
-        options: ["//", "/*...*/", "&&", "||"],
-        answer: "//"
+        options: ["a) //", "b) /*...*/", "c) &&", "d) ||"],
+        answer: "a) //"
     },
     {
         title: "Which is NOT a primitive data type in JavaScript?",
-        options: ["Boolean", "Object", "Undefined", "String"],
-        answer: "Object"
+        options: ["a) Boolean", "b) Object", "c) Undefined", "d) String"],
+        answer: "b) Object"
     },
     {
         title: "What does the 'DOM' stand for in JavaScript?",
-        options: ["Document Object Model", "Data Object Model", "Document Order Model", "Dynamic Object Model"],
-        answer: "Document Object Model"
+        options: ["a) Dynamic Object Model", "b) Data Object Model", "c) Document Order Model", "d) Document Object Model"],
+        answer: "d) Document Object Model"
     },
     {
         title: "What is the purpose of the addEventListener method in JavaScript?",
-        options: ["To add a new HTML element", "To attach an event handler to an element", "To create a new event", "To remove an event from an element"],
-        answer: "To attach an event handler to an element"
+        options: ["a) To add a new HTML element", "b) To create a new event", "c) To attach an event handler to an element", "d) To remove an event from an element"],
+        answer: "c) To attach an event handler to an element"
     },
     {
         title: "What does the NaN value represent in JavaScript?",
-        options: ["Not a Number", "Null and Nothing", "Negative Number", "No Assignment"],
-        answer: "Not a Number"
+        options: ["a) Not a Number", "b) Null and Nothing", "c) Negative Number", "d) No Assignment"],
+        answer: "a) Not a Number"
     },
 ]
+
+
 
 // variables to connect to DOM elements
 var questionContainer = document.getElementById("questions");
@@ -54,23 +56,13 @@ var initialsEl = document.getElementById("initials");
 var submitButton = document.getElementById("submit");
 var finalScore = document.getElementById("final-score");
 
-// starting timer state
+// starting states
 var timeLeft = 60;
-
-// question index
 var questionIndex = 0;
-
-// timer 
+var answerCount = 0;
 var timerInterval = setInterval(function() {
-    // decrease var timeLeft that was declared earlier by 1
-    timeLeft --;
-
-    // countdown html element display the text of timeleft 
-    countdownEl.textContent = timeLeft;
 }, 1000);
 
-// how many questions correct
-var correctQuestions;
 
 
 
@@ -91,18 +83,23 @@ startButton.addEventListener("click", function() {
 
 
 
-function countdownTimer() {
-    timerInterval;
 
-        if(timeLeft === 0) {
+function countdownTimer() {
+    var timerInterval = setInterval(function() {
+        // decrease var timeLeft that was declared earlier by 1
+        timeLeft --;
+    
+        // countdown html element display the text of timeleft 
+        countdownEl.textContent = timeLeft + " seconds";
+    
+        if(timeLeft === 0 || questionIndex === questions.length - 1 || timeLeft < 0) {
             // Stops execution of action at set interval
             clearInterval(timerInterval);
+            endGame();
+        }
+    }, 1000);
+}
 
-            // when time runs out, go to results page regardless of if quiz is completed
-            questionContainer.classList.add('hide');
-            resultsPage.classList.remove('hide');
-         }
-     }
 
 
 
@@ -139,41 +136,47 @@ function renderQuestions() {
 
 
 
+
 function questionClick(event) {
     // Get the element that triggered the event and store it in buttonEl
     var buttonEl = event.target;
     console.log("answerValue", buttonEl.value);
 
-    // ADD IN IF STATEMENT, IF WHAT IS CLICKED IS NOT A BUTTON DO NOTHING
-   
-
     // Get the correct answer for the current question and store it in correctAnswer
     var correctAnswer = questions[questionIndex].answer;
 
-    // Subtract time if answer is incorrect, but dont allow to go into minus seconds
-    if (buttonEl.value !== correctAnswer && timeLeft > 10) {
+    // Subtract time if answer is incorrect
+    if (buttonEl.value !== correctAnswer) {
         timeLeft -= 10;
-    } else if 
-        (buttonEl.value !== correctAnswer && timeLeft < 10) {
-            // THIS LINE IS OBSELETE, WE WANT IT TO = 0
-        clearInterval(timerInterval);  
-    }
+    } else if
+        (buttonEl.value === correctAnswer) {
+        answerCount++;    
+    };
 
-    // Check if current question is last one, and if they are completed prior to time running out
-    if (questionIndex === questions.length - 1) {
-        // clear timerInterval as all questions have been answered
-        clearInterval(timerInterval);
-        // go to results page
-        questionContainer.classList.add('hide');
-        resultsPage.classList.remove('hide');
+    // stops action from taking place if the click is not on the buttonEl
+    if (buttonEl.matches(questions.options)) {
+        return;
     } else {
-        // Move to the next question
         questionIndex++;
         renderQuestions();
-    }
+    };
 }
 
 questionOptions.addEventListener("click", questionClick);
+
+
+
+function endGame() {
+    countdownEl.textContent = 0;
+
+    // show final score
+    finalScore.textContent = "Your final score is: " + answerCount
+
+    // go to results page
+    questionContainer.classList.add('hide');
+    resultsPage.classList.remove('hide');
+}
+
 
 
 
@@ -183,8 +186,7 @@ submitButton.addEventListener("click", function() {
         var highScores = JSON.parse(window.localStorage.getItem('highScores')) || [];
         var newScore = {
             initials: initials,
-            // SCORE SHOULD BE HOW MANY QUESTIONS ARE CORRECT + TIME REMAINING
-            score: timeLeft
+            score: answerCount
         };
 
         highScores.push(newScore);

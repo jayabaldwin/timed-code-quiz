@@ -1,5 +1,6 @@
 var highscoreList = document.getElementById("highscores-list");
 var resetButton = document.getElementById("reset-highscores");
+var resetMessage = document.getElementById("reset-message");
 
 var highScores = JSON.parse(window.localStorage.getItem('highScores')) || [];
 
@@ -8,6 +9,7 @@ function displayHighScores() {
     // REVISE THIS FUNCTION
     highScores.sort((a, b) => b.score - a.score);
     highscoreList.innerHTML = '';
+    highscoreList.setAttribute("style", "list-style-type: none;")
 
     for (var i = 0; i < highScores.length; i++) {
         var scoreItem = document.createElement('li');
