@@ -1,5 +1,22 @@
+/* colour pallete */
 :root {
+    --turquoise: black;
+    --flower: #E3A68C;
+    --amber: #CC6A46;
+    --white: #ffffff;
+ 
+}
 
+h1, 
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 2.5em;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2em;
 }
 
 .hide {
@@ -11,19 +28,90 @@ header {
     justify-content: space-between;
 }
 
+body {
+    margin-left: 5em;
+    margin-right: 5em;
+    margin-top: 2em;
+    background-color: #e2c7bb;
+}
+
+main,
 .quiz-box,
 .scoreboard {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
+    margin-left: 6em;
+    margin-right: 6em;
+    margin-top: 3em;
+    text-align: center;
+}
+
+#buttons {
+    display: inline;
 }
 
 .countdown {
     color: black;
     font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+#highscores {
+    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    color: black;
+}
+
+#highscores:hover {
+    text-decoration: overline;
+    color: var(--amber);
+}
+
+li {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 2em;
 }
 
 #options {
     display: flex;
     flex-direction: column;
+}
+
+button {
+    margin-top: 3rem;
+    cursor: pointer;
+    border: 0.5rem;
+    border-radius: 1rem;
+    border-color: rgba(68, 63, 63, 0.429);
+    padding: 0.5rem 1rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+    font-weight: 200;
+    color: var(--white);
+    background-color: var(--turquoise);
+    box-shadow: 0 1.25rem 1rem -1rem var(--amber);
+}
+
+button:hover {
+    box-shadow: inset 0px 0px 8px var(--flower), 0 0 15px var(--flower);
+    background-color: var(--amber);
+}
+
+#submit {
+    font-size: 1.5em;
+}
+
+@media screen and (max-width: 1200px) {
+    main,
+    .quiz-box,
+    .scoreboard {
+        margin-left: 0em;
+        margin-right: 0em;
+    }
 }

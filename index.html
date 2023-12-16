@@ -5,10 +5,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto:wght@300&display=swap');
+    </style>  
   </head>
+
   <body>
     <header>
-        <div class="highscores"><a href="highscores.html">View Highscores</a></div>
+        <div class="highscores"><a href="highscores.html" id="highscores">View Highscores</a></div>
 
         <!-- Timer div -->
         <div class="countdown">Time: <span id="countdown">60</span></div>
@@ -31,16 +35,13 @@
 
         <!-- "results" div will be hidden until the timer runs out or all questions are answered -->
         <div id="results" class="hide">
-            <h2>Test Concluded...</h2>
-            <p>Your final score is: <span id="final-score"></span></p>
-            <p>Enter initials: 
-                <input type="text" id="initials"/> 
-                <button id="submit">Submit</button>
-            </p>
+            <h2>All Done!</h2>
+            <p id="final-score"></p>
+            <p>Enter initials: <input type="text" id="initials"/></p>
+            <button id="submit">Submit</button>
         </div>
       </section>
     </main>
     <script src="assets/js/script.js"></script>
-    <script src="assets/js/highscores.js"></script>
   </body>
 </html>
